@@ -22,12 +22,11 @@ class HomeSliderController extends Controller
     protected function validateRequest ()
     {
         return request()->validate([
+            'img_url' => 'required',
             'title' => 'required',
-            'short_desc' => 'required',
-            'long_desc' => 'required',
-            'category' => 'required',
-            'current_bid' => 'required',
-            'increment' => 'required'
+            'description' => 'required',
+            'url' => 'required',
+            'position' => 'required'
         ]);
     }
 

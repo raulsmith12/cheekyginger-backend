@@ -22,12 +22,7 @@ class ProductPictureController extends Controller
     protected function validateRequest ()
     {
         return request()->validate([
-            'title' => 'required',
-            'short_desc' => 'required',
-            'long_desc' => 'required',
-            'category' => 'required',
-            'current_bid' => 'required',
-            'increment' => 'required'
+            'url' => 'required'
         ]);
     }
 
