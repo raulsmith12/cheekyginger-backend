@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeFieldController;
 use App\Http\Controllers\HomeSectionController;
 use App\Http\Controllers\HomeSliderController;
