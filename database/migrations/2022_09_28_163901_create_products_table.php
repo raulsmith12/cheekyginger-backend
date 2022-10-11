@@ -15,13 +15,12 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_id')->unique();
             $table->string('sku');
             $table->string('category');
             $table->string('title');
             $table->text('description');
             $table->float('price', 8, 2);
-            $table->string('paypal_id');
+            $table->string('paypal_id')->nullable();
             $table->timestamps();
         });
     }

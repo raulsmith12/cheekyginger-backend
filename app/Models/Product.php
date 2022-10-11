@@ -13,11 +13,11 @@ class Product extends Model
 
     public function tags()
     {
-        $this->hasMany(ProductTag::class);
+        return $this->hasMany(ProductTag::class);
     }
 
     public function pictures()
     {
-        $this->hasMany(ProductPicture::class);
+        return $this->hasMany(ProductPicture::class);
     }
 }
