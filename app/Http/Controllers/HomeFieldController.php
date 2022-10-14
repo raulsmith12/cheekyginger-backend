@@ -35,13 +35,15 @@ class HomeFieldController extends Controller
         return new HomeFieldResource($home_field);
     }
 
-    public function update (HomeField $home_field)
+    public function update(Request $request, HomeField $home_field)
     {
-        $data = $this->validateRequest();
+        $request->validate([
+            'description' => 'required'
+        ]);
 
-        $home_field->update($data);
+        $home_field->update($request->all());
 
-        return new HomeFieldResource($home_field);
+        return $home_field;
     }
 
     public function destroy (HomeField $home_field)

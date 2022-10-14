@@ -36,13 +36,16 @@ class HomeSectionController extends Controller
         return new HomeSectionResource($home_section);
     }
 
-    public function update (HomeSection $home_section)
+    public function update(Request $request, HomeSection $home_section)
     {
-        $data = $this->validateRequest();
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required'
+        ]);
 
-        $home_section->update($data);
+        $home_section->update($request->all());
 
-        return new HomeSectionResource($home_section);
+        return $home_section;
     }
 
     public function destroy (HomeSection $home_section)

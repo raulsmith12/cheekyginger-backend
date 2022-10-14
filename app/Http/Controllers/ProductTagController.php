@@ -35,13 +35,15 @@ class ProductTagController extends Controller
         return new ProductTagResource($product_tag);
     }
 
-    public function update (ProductTag $product_tag)
+    public function update (Request $request, ProductTag $product_tag)
     {
-        $data = $this->validateRequest();
+        $request()->validate([
+            'tag' => 'required'
+        ]);
 
-        $product_tag->update($data);
+        $product_tag->update($request->all());
 
-        return new ProductTagResource($product_tag);
+        return $product_tag;
     }
 
     public function destroy (ProductTag $product_tag)

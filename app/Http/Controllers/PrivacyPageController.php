@@ -35,13 +35,15 @@ class PrivacyPageController extends Controller
         return new PrivacyPageResource($privacy_page);
     }
 
-    public function update (PrivacyPage $privacy_page)
+    public function update (Request $request, PrivacyPage $privacy_page)
     {
-        $data = $this->validateRequest();
+        $request()->validate([
+            'text' => 'required'
+        ]);
 
-        $privacy_page->update($data);
+        $privacy_page->update($request->all());
 
-        return new PrivacyPageResource($privacy_page);
+        return $privacy_page;
     }
 
     public function destroy (PrivacyPage $privacy_page)

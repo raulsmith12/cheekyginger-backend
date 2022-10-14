@@ -35,13 +35,15 @@ class TermsPageController extends Controller
         return new TermsPageResource($terms_page);
     }
 
-    public function update (TermsPage $terms_page)
+    public function update (Request $request, TermsPage $terms_page)
     {
-        $data = $this->validateRequest();
+        $request()->validate([
+            'text' => 'required'
+        ]);
 
-        $terms_page->update($data);
+        $terms_page->update($request->all());
 
-        return new TermsPageResource($terms_page);
+        return $terms_page;
     }
 
     public function destroy (TermsPage $terms_page)

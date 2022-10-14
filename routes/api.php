@@ -32,22 +32,22 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::get('/home-fields', [HomeFieldController::class, 'index']);
-Route::get('/home-fields/{field}', [HomeFieldController::class, 'show']);
+Route::get('/home-fields/{home_field}', [HomeFieldController::class, 'show']);
 Route::post('/home-fields', [HomeFieldController::class, 'store']);
-Route::put('/home-fields/{field}', [HomeFieldController::class, 'update']);
-Route::delete('/home-fields/{field}', [HomeFieldController::class, 'destroy']);
+Route::put('/home-fields/{home_field}', [HomeFieldController::class, 'update']);
+Route::delete('/home-fields/{home_field}', [HomeFieldController::class, 'destroy']);
 
 Route::get('/home-sections', [HomeSectionController::class, 'index']);
-Route::get('/home-sections/{section}', [HomeSectionController::class, 'show']);
+Route::get('/home-sections/{home_section}', [HomeSectionController::class, 'show']);
 Route::post('/home-sections', [HomeSectionController::class, 'store']);
-Route::put('/home-sections/{section}', [HomeSectionController::class, 'update']);
-Route::delete('/home-sections/{section}', [HomeSectionController::class, 'destroy']);
+Route::put('/home-sections/{home_section}', [HomeSectionController::class, 'update']);
+Route::delete('/home-sections/{home_section}', [HomeSectionController::class, 'destroy']);
 
 Route::get('/home-sliders', [HomeSliderController::class, 'index']);
-Route::get('/home-sliders/{slider}', [HomeSliderController::class, 'show']);
+Route::get('/home-sliders/{home_slider}', [HomeSliderController::class, 'show']);
 Route::post('/home-sliders', [HomeSliderController::class, 'store']);
-Route::put('/home-sliders/{slider}', [HomeSliderController::class, 'update']);
-Route::delete('/home-sliders/{slider}', [HomeSliderController::class, 'destroy']);
+Route::put('/home-sliders/{home_slider}', [HomeSliderController::class, 'update']);
+Route::delete('/home-sliders/{home_slider}', [HomeSliderController::class, 'destroy']);
 
 Route::get('/socials', [SocialController::class, 'index']);
 Route::get('/socials/{social}', [SocialController::class, 'show']);
@@ -56,27 +56,27 @@ Route::put('/socials/{social}', [SocialController::class, 'update']);
 Route::delete('/socials/{social}', [SocialController::class, 'destroy']);
 
 Route::get('/privacy-pages', [PrivacyPageController::class, 'index']);
-Route::get('/privacy-pages/{page}', [PrivacyPageController::class, 'show']);
+Route::get('/privacy-pages/{privacy_page}', [PrivacyPageController::class, 'show']);
 Route::post('/privacy-pages', [PrivacyPageController::class, 'store']);
-Route::put('/privacy-pages/{page}', [PrivacyPageController::class, 'update']);
-Route::delete('/privacy-pages/{page}', [PrivacyPageController::class, 'destroy']);
+Route::put('/privacy-pages/{privacy_page}', [PrivacyPageController::class, 'update']);
+Route::delete('/privacy-pages/{privacy_page}', [PrivacyPageController::class, 'destroy']);
 
 Route::get('/terms-pages', [TermsPageController::class, 'index']);
-Route::get('/terms-pages/{page}', [TermsPageController::class, 'show']);
+Route::get('/terms-pages/{terms_page}', [TermsPageController::class, 'show']);
 Route::post('/terms-pages', [TermsPageController::class, 'store']);
-Route::put('/terms-pages/{page}', [TermsPageController::class, 'update']);
-Route::delete('/terms-pages/{page}', [TermsPageController::class, 'destroy']);
+Route::put('/terms-pages/{terms_page}', [TermsPageController::class, 'update']);
+Route::delete('/terms-pages/{terms_page}', [TermsPageController::class, 'destroy']);
 
 Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/{id}', [ProductController::class, 'show']);
+Route::get('/products/{product}', [ProductController::class, 'show']);
 Route::post('/products', [ProductController::class, 'store']);
-Route::put('/products/{id}', [ProductController::class, 'update']);
-Route::delete('/products/{id}', [ProductController::class, 'destroy']);
+Route::put('/products/{product}', [ProductController::class, 'update']);
+Route::delete('/products/{product}', [ProductController::class, 'destroy']);
 
 Route::post('/products/pictures', [ProductPictureController::class, 'store']);
-Route::put('/products/pictures/{id}', [ProductPictureController::class, 'update']);
-Route::delete('/products/pictures/{id}', [ProductPictureController::class, 'destroy']);
+Route::put('/products/pictures/{product_picture}', [ProductPictureController::class, 'update']);
+Route::delete('/products/pictures/{product_picture}', [ProductPictureController::class, 'destroy']);
 
 Route::post('/products/tags', [ProductTagController::class, 'store']);
-Route::put('/products/tags/{id}', [ProductTagController::class, 'update']);
-Route::delete('/products/tags/{id}', [ProductTagController::class, 'destroy']);
+Route::put('/products/tags/{product_tag}', [ProductTagController::class, 'update']);
+Route::delete('/products/tags/{product_tag}', [ProductTagController::class, 'destroy']);

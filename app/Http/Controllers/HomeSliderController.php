@@ -39,13 +39,19 @@ class HomeSliderController extends Controller
         return new HomeSliderResource($home_slider);
     }
 
-    public function update (HomeSlider $home_slider)
+    public function update(Request $request, HomeSlider $home_slider)
     {
-        $data = $this->validateRequest();
+        $request->validate([
+            'img_url' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'url' => 'required',
+            'position' => 'required'
+        ]);
 
-        $home_slider->update($data);
+        $home_slider->update($request->all());
 
-        return new HomeSliderResource($home_slider);
+        return $home_slider;
     }
 
     public function destroy (HomeSlider $home_slider)

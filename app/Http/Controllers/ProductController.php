@@ -39,13 +39,19 @@ class ProductController extends Controller
         return new ProductResource($product);
     }
 
-    public function update (Product $product)
+    public function update (Request $request, Product $product)
     {
-        $data = $this->validateRequest();
+        $request()->validate([
+            'sku' => 'required',
+            'category' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'price' => 'required'
+        ]);
 
-        $product->update($data);
+        $product->update($request->all());
 
-        return new ProductResource($product);
+        return $product;
     }
 
     public function destroy (Product $product)

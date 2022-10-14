@@ -35,13 +35,15 @@ class ProductPictureController extends Controller
         return new ProductPictureResource($product_picture);
     }
 
-    public function update (ProductPicture $product_picture)
+    public function update (Request $request, ProductPicture $product_picture)
     {
-        $data = $this->validateRequest();
+        $request()->validate([
+            'url' => 'required'
+        ]);
 
-        $product_picture->update($data);
+        $product_picture->update($request->all());
 
-        return new ProductPictureResource($product_picture);
+        return $product_picture;
     }
 
     public function destroy (ProductPicture $product_picture)

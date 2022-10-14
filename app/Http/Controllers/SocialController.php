@@ -36,13 +36,16 @@ class SocialController extends Controller
         return new SocialResource($social);
     }
 
-    public function update (Social $social)
+    public function update (Request $request, Social $social)
     {
-        $data = $this->validateRequest();
+        $request()->validate([
+            'img_url' => 'required',
+            'url' => 'required'
+        ]);
 
-        $social->update($data);
+        $social->update($request->all());
 
-        return new SocialResource($social);
+        return $social;
     }
 
     public function destroy (Social $social)
