@@ -80,3 +80,6 @@ Route::delete('/products/pictures/{product_picture}', [ProductPictureController:
 Route::post('/products/tags', [ProductTagController::class, 'store']);
 Route::put('/products/tags/{product_tag}', [ProductTagController::class, 'update']);
 Route::delete('/products/tags/{product_tag}', [ProductTagController::class, 'destroy']);
+
+Route::get('files', [FileController::class, 'index'])->name('files');
+Route::post('files', [FileController::class, 'upload'])->name('files');

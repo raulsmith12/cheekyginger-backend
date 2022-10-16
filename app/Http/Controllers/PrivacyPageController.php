@@ -22,7 +22,7 @@ class PrivacyPageController extends Controller
     protected function validateRequest ()
     {
         return request()->validate([
-            'tag' => 'required'
+            'text' => 'required'
         ]);
     }
 
