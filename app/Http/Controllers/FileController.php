@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\File;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
@@ -15,19 +15,20 @@ class FileController extends Controller
 
     public function upload(Request $request)
     {
-        if($request->get('file'))
-       {
-          $image = $request->get('file');
-          $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-          File::make($request->get('file'))->save(public_path('images/').$name);
-        }
+        $request->validate([
+            'file_name' => 'required'
+        ]);
 
+        $file = $request->file_name;
+        $filename = explode(',', $file);
+        $type = explode('/', $filename[0]);
+        $filetype = explode(';', $type[1]);
+        $fileType = $filetype[0];
 
+        $fileName = uniqid().'.'.$fileType;
 
-        $file = new File();
-        $file->file_name=$name;
-        $file->save();
-        return response()->json('Successfully added', $file);
+        Storage::disk('public')->put($fileName, base64_decode($filename[1]));
 
+        return response('https://galacticblue.net/cheekyginger/backend/storage/app/public/uploads/'.$fileName);
     }
 }
