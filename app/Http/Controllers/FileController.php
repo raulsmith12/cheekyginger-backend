@@ -13,39 +13,21 @@ class FileController extends Controller
         return response()->json(["status" => "success", "count" => count($files), "data" => $files]);
     }
 
-    public function upload(Request $request) {
-        $filesName = [];
-        $response = [];
-
-        $validator = Validator::make($request->all(),
-            [
-                'files' => 'required',
-                'files.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-            ]
-        );
-
-        if($validator->fails()) {
-            return response()->json(["status" => "failed", "message" => "Validation error", "errors" => $validator->errors()]);
+    public function upload(Request $request)
+    {
+        if($request->get('file'))
+       {
+          $image = $request->get('file');
+          $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+          File::make($request->get('file'))->save(public_path('images/').$name);
         }
 
-        if($request->has('files')) {
-            foreach($request->file('files') as $file) {
-                $filename = time().rand(3). '.'.$file->getClientOriginalExtension();
-                $file->move('uploads/', $filename);
 
-                File::create([
-                    'file_name' => $filename
-                ]);
-            }
 
-            $response["status"] = "successs";
-            $response["message"] = "Success! image(s) uploaded";
-        }
+        $file = new File();
+        $file->file_name=$name;
+        $file->save();
+        return response()->json('Successfully added', $file);
 
-        else {
-            $response["status"] = "failed";
-            $response["message"] = "Failed! image(s) not uploaded";
-        }
-        return response()->json($response);
     }
 }
