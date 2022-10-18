@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('category');
             $table->string('title');
             $table->text('description');
-            $table->float('price', 8, 2);
+            $table->decimal('price', 10, 2);
             $table->string('paypal_id')->nullable();
             $table->timestamps();
         });
