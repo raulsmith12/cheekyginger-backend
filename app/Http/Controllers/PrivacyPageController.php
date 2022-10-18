@@ -37,10 +37,6 @@ class PrivacyPageController extends Controller
 
     public function update (Request $request, PrivacyPage $privacy_page)
     {
-        $request()->validate([
-            'text' => 'required'
-        ]);
-
         $privacy_page->update($request->all());
 
         return $privacy_page;
