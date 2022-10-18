@@ -37,9 +37,6 @@ class TermsPageController extends Controller
 
     public function update (Request $request, TermsPage $terms_page)
     {
-        $request()->validate([
-            'text' => 'required'
-        ]);
 
         $terms_page->update($request->all());
 
