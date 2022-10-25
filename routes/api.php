@@ -8,6 +8,8 @@ use App\Http\Controllers\HomeSliderController;
 use App\Http\Controllers\PrivacyPageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductPictureController;
+use App\Http\Controllers\ProductPrintController;
+use App\Http\Controllers\ProductPrintSizeController;
 use App\Http\Controllers\ProductTagController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\TermsPageController;
@@ -81,6 +83,16 @@ Route::delete('/products/pictures/{product_picture}', [ProductPictureController:
 Route::post('/products/tags', [ProductTagController::class, 'store']);
 Route::put('/products/tags/{product_tag}', [ProductTagController::class, 'update']);
 Route::delete('/products/tags/{product_tag}', [ProductTagController::class, 'destroy']);
+
+Route::get('/products/prints/{product_prints}', [ProductController::class, 'show']);
+Route::post('/products/prints', [ProductPrintController::class, 'store']);
+Route::put('/products/prints/{product_prints}', [ProductPrintController::class, 'update']);
+Route::delete('/products/prints/{product_prints}', [ProductPrintController::class, 'destroy']);
+
+Route::get('/products/sizes/{product_print_sizes}', [ProductController::class, 'show']);
+Route::post('/products/sizes', [ProductPrintSizeController::class, 'store']);
+Route::put('/products/sizes/{product_print_sizes}', [ProductPrintSizeController::class, 'update']);
+Route::delete('/products/sizes/{product_print_sizes}', [ProductPrintSizeController::class, 'destroy']);
 
 Route::get('files', [FileController::class, 'index']);
 Route::post('files', [FileController::class, 'upload'])->name('file.store');

@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['product_id', 'sku', 'category', 'title', 'description', 'price', 'paypal_id'];
+    protected $fillable = ['category', 'title', 'description'];
 
     public function tags()
     {
@@ -19,5 +19,10 @@ class Product extends Model
     public function pictures()
     {
         return $this->hasMany(ProductPicture::class);
+    }
+
+    public function prints()
+    {
+        return $this->hasMany(ProductPrint::class);
     }
 }

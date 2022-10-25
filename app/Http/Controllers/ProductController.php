@@ -22,11 +22,9 @@ class ProductController extends Controller
     protected function validateRequest ()
     {
         return request()->validate([
-            'sku' => 'required',
             'category' => 'required',
             'title' => 'required',
-            'description' => 'required',
-            'price' => 'required'
+            'description' => 'required'
         ]);
     }
 
@@ -42,11 +40,9 @@ class ProductController extends Controller
     public function update (Request $request, Product $product)
     {
         $request()->validate([
-            'sku' => 'required',
             'category' => 'required',
             'title' => 'required',
-            'description' => 'required',
-            'price' => 'required'
+            'description' => 'required'
         ]);
 
         $product->update($request->all());
