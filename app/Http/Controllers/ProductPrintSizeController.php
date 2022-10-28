@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ProductPrintSizeResource;
+use App\Models\ProductPrint;
 use App\Models\ProductPrintSize;
 use Illuminate\Http\Request;
 
@@ -19,22 +20,16 @@ class ProductPrintSizeController extends Controller
         return new ProductPrintSizeResource($product_print_size);
     }
 
-    protected function validateRequest ()
+    public function store (Request $request)
     {
-        return request()->validate([
-            'print_size' => 'required',
-            'price' => 'required',
-            'sku' => 'required'
+        $product = ProductPrint::findOrFail($request->print_id);
+
+        $product->tags()->create([
+            'print_size' => $request->print_size,
+            'price' => $request->price,
+            'sku' => $request->sku,
+            'paypal_id' => $request->paypal_id
         ]);
-    }
-
-    public function store ()
-    {
-        $data = $this->validateRequest();
-
-        $product_print_size = ProductPrintSize::create($data);
-
-        return new ProductPrintSizeResource($product_print_size);
     }
 
     public function update (Request $request, ProductPrintSize $product_print_size)

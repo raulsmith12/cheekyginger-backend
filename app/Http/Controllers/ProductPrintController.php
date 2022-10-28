@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ProductPrintResource;
+use App\Models\Product;
 use App\Models\ProductPrint;
 use Illuminate\Http\Request;
 
@@ -19,20 +20,13 @@ class ProductPrintController extends Controller
         return new ProductPrintResource($product_print);
     }
 
-    protected function validateRequest ()
+    public function store (Request $request)
     {
-        return request()->validate([
-            'print_type' => 'required'
+        $product = Product::findOrFail($request->product_id);
+
+        $product->prints()->create([
+            'print_type' => $request->print_type
         ]);
-    }
-
-    public function store ()
-    {
-        $data = $this->validateRequest();
-
-        $product_print = ProductPrint::create($data);
-
-        return new ProductPrintResource($product_print);
     }
 
     public function update (Request $request, ProductPrint $product_print)

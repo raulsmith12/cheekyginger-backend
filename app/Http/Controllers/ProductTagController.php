@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ProductTagResource;
+use App\Models\Product;
 use App\Models\ProductTag;
 use Illuminate\Http\Request;
 
@@ -19,20 +20,13 @@ class ProductTagController extends Controller
         return new ProductTagResource($product_tag);
     }
 
-    protected function validateRequest ()
+    public function store (Request $request)
     {
-        return request()->validate([
-            'tag' => 'required'
+        $product = Product::findOrFail($request->product_id);
+
+        $product->tags()->create([
+            'tag' => $request->tag
         ]);
-    }
-
-    public function store ()
-    {
-        $data = $this->validateRequest();
-
-        $product_tag = ProductTag::create($data);
-
-        return new ProductTagResource($product_tag);
     }
 
     public function update (Request $request, ProductTag $product_tag)

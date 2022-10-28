@@ -84,12 +84,12 @@ Route::post('/products/tags', [ProductTagController::class, 'store']);
 Route::put('/products/tags/{product_tag}', [ProductTagController::class, 'update']);
 Route::delete('/products/tags/{product_tag}', [ProductTagController::class, 'destroy']);
 
-Route::get('/products/prints/{product_prints}', [ProductController::class, 'show']);
+Route::get('/products/prints/{product_print}', [ProductPrintController::class, 'show']);
 Route::post('/products/prints', [ProductPrintController::class, 'store']);
 Route::put('/products/prints/{product_prints}', [ProductPrintController::class, 'update']);
 Route::delete('/products/prints/{product_prints}', [ProductPrintController::class, 'destroy']);
 
-Route::get('/products/sizes/{product_print_sizes}', [ProductController::class, 'show']);
+Route::get('/products/sizes/{product_print_size}', [ProductPrintSizeController::class, 'show']);
 Route::post('/products/sizes', [ProductPrintSizeController::class, 'store']);
 Route::put('/products/sizes/{product_print_sizes}', [ProductPrintSizeController::class, 'update']);
 Route::delete('/products/sizes/{product_print_sizes}', [ProductPrintSizeController::class, 'destroy']);

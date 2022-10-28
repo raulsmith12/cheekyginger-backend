@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ProductPictureResource;
+use App\Models\Product;
 use App\Models\ProductPicture;
 use Illuminate\Http\Request;
 
@@ -19,20 +20,13 @@ class ProductPictureController extends Controller
         return new ProductPictureResource($product_picture);
     }
 
-    protected function validateRequest ()
+    public function store (Request $request)
     {
-        return request()->validate([
-            'url' => 'required'
+        $product = Product::findOrFail($request->product_id);
+
+        $product->pictures()->create([
+            'url' => $request->url
         ]);
-    }
-
-    public function store ()
-    {
-        $data = $this->validateRequest();
-
-        $product_picture = ProductPicture::create($data);
-
-        return new ProductPictureResource($product_picture);
     }
 
     public function update (Request $request, ProductPicture $product_picture)
