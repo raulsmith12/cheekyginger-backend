@@ -31,11 +31,9 @@ class ProductTagController extends Controller
 
     public function update (Request $request, ProductTag $product_tag)
     {
-        $request()->validate([
-            'tag' => 'required'
+        $product_tag->update([
+            'tag' => $request->tag
         ]);
-
-        $product_tag->update($request->all());
 
         return $product_tag;
     }
