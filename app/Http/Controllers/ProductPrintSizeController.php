@@ -22,9 +22,9 @@ class ProductPrintSizeController extends Controller
 
     public function store (Request $request)
     {
-        $product = ProductPrint::findOrFail($request->print_id);
+        $product = ProductPrint::findOrFail($request->product_print_id);
 
-        $product->tags()->create([
+        $product->sizes()->create([
             'print_size' => $request->print_size,
             'price' => $request->price,
             'sku' => $request->sku,
@@ -34,13 +34,12 @@ class ProductPrintSizeController extends Controller
 
     public function update (Request $request, ProductPrintSize $product_print_size)
     {
-        $request()->validate([
-            'print_size' => 'required',
-            'price' => 'required',
-            'sku' => 'required'
+        $product_print_size->sizes()->update([
+            'print_size' => $request->print_size,
+            'price' => $request->price,
+            'sku' => $request->sku,
+            'paypal_id' => $request->paypal_id
         ]);
-
-        $product_print_size->update($request->all());
 
         return $product_print_size;
     }
