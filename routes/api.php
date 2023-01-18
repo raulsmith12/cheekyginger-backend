@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeFieldController;
 use App\Http\Controllers\HomeSectionController;
@@ -96,3 +97,5 @@ Route::delete('/products/sizes/{product_print_sizes}', [ProductPrintSizeControll
 
 Route::get('files', [FileController::class, 'index']);
 Route::post('files', [FileController::class, 'upload'])->name('file.store');
+
+Route::post('/contact', [ContactController::class, 'store']);
